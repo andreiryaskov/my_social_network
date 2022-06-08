@@ -3,12 +3,21 @@
 
 import {v1} from "uuid";
 
-export const initialState: any = {
+export const initialState: AddPostStateType = {
     messages: [
-        {id: 'bldwet', message: 'bldwet'}
     ]
 }
-export const addPostsReducer = (state: any = initialState, action: any): any => {
+
+export type PostsType = {
+    id: string
+    message: string
+}
+
+type AddPostStateType = {
+    [key:string]:PostsType[]
+}
+
+export const addPostsReducer = (state: AddPostStateType = initialState, action: AddPostsActionType): AddPostStateType => {
 
 
     switch (action.type) {
@@ -22,7 +31,7 @@ export const addPostsReducer = (state: any = initialState, action: any): any => 
     }
 }
 
-export const addPostsAC = (message:any) => {
+export const addPostsAC = (message:string) => {
     return {
         type: 'ADD_POSTS',
         payload: {
@@ -32,9 +41,6 @@ export const addPostsAC = (message:any) => {
 }
 export type AddPostsActionType = ReturnType<typeof addPostsAC>
 
-export type AddPostsStateType = {
-    message: string
-}
 
 
 

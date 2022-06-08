@@ -11,6 +11,9 @@ import Music from "./Music/Music";
 import AddPostArea from "./AddPostArea/AddPostArea";
 import Posts from "./Posts/Posts";
 import {useSelector} from "react-redux";
+import {AddPostsStateType} from "../../types";
+import {AppRootStateType} from "../../redux/store";
+import {PostsType} from "../../redux/reducers/add-posts-reducer";
 
 const Item = styled(Paper)(({theme}) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -21,10 +24,10 @@ const Item = styled(Paper)(({theme}) => ({
 }));
 
 
-export const Profile = React.memo(function () {
-
-        const newPost = useSelector<any, any>(state => state.addPosts.messages)
-        // console.log(newPost)
+export const Profile =  () => {
+// debugger
+        const newPost = useSelector<AppRootStateType, PostsType[]>(state => state.addPosts.messages)
+        console.log(newPost)
 
         return (
             <Grid container spacing={2}>
@@ -45,7 +48,7 @@ export const Profile = React.memo(function () {
                     <ProfileInfo/>
                     <MyPhotos/>
                     <AddPostArea/>
-                    {newPost.map((i: any) => {
+                    {newPost.map((i) => {
                         return <Posts key={i.id} id={i.id} message={i.message}/>
                     })}
 
@@ -53,6 +56,5 @@ export const Profile = React.memo(function () {
             </Grid>
         );
     }
-)
 
 export default Profile
