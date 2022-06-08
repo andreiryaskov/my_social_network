@@ -1,26 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
+import {Container} from "@mui/material";
 import './App.css';
+import PrimarySearchAppBar from "./components/header/Header";
+import Menu from "./components/navbar/Menu";
+import Profile from "./components/profile/Profile";
+import Grid from "@mui/material/Grid";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    return (
+        <Container className={'container'}>
+            <PrimarySearchAppBar/>
+            <div className={'app_wrapper'}>
+                <Grid container spacing={2} >
+                    <Grid item xs={2}>
+                        <Menu/>
+                    </Grid>
+                    <Grid item xs={10}>
+                        <Profile/>
+                    </Grid>
+                </Grid>
+            </div>
+
+        </Container>
+    );
 }
 
 export default App;
