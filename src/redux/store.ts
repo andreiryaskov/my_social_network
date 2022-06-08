@@ -2,11 +2,13 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux'
 import {addPostsReducer} from "./reducers/add-posts-reducer";
 import logger from "redux-logger";
+import {usersReducer} from "./reducers/users-reducer";
 
 // объединяя reducer-ы с помощью combineReducers,
 // мы задаём структуру нашего единственного объекта-состояния
 const rootReducer = combineReducers({
-    addPosts: addPostsReducer
+    addPosts: addPostsReducer,
+    users: usersReducer
 })
 // непосредственно создаём store
 export const store = createStore(rootReducer, applyMiddleware(logger));

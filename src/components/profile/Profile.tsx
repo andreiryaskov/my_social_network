@@ -11,7 +11,6 @@ import Music from "./Music/Music";
 import AddPostArea from "./AddPostArea/AddPostArea";
 import Posts from "./Posts/Posts";
 import {useSelector} from "react-redux";
-import {AddPostsStateType} from "../../types";
 import {AppRootStateType} from "../../redux/store";
 import {PostsType} from "../../redux/reducers/add-posts-reducer";
 
@@ -24,37 +23,36 @@ const Item = styled(Paper)(({theme}) => ({
 }));
 
 
-export const Profile =  () => {
+export const Profile = () => {
 // debugger
-        const newPost = useSelector<AppRootStateType, PostsType[]>(state => state.addPosts.messages)
-        console.log(newPost)
+    const newPost = useSelector<AppRootStateType, PostsType[]>(state => state.addPosts.messages)
 
-        return (
-            <Grid container spacing={2}>
-                <Grid item
-                      xs={4}
-                      container
-                      direction="column">
-                    <ProfilePhoto/>
-                    <Friends/>
-                    <Following/>
-                    <Music/>
-                </Grid>
-                <Grid item
-                      xs={8}
-                      container
-                      direction="column"
-                >
-                    <ProfileInfo/>
-                    <MyPhotos/>
-                    <AddPostArea/>
-                    {newPost.map((i) => {
-                        return <Posts key={i.id} id={i.id} message={i.message}/>
-                    })}
-
-                </Grid>
+    return (
+        <Grid container spacing={2}>
+            <Grid item
+                  xs={4}
+                  container
+                  direction="column">
+                <ProfilePhoto/>
+                <Friends/>
+                <Following/>
+                <Music/>
             </Grid>
-        );
-    }
+            <Grid item
+                  xs={8}
+                  container
+                  direction="column"
+            >
+                <ProfileInfo/>
+                <MyPhotos/>
+                <AddPostArea/>
+                {newPost.map((i) => {
+                    return <Posts key={i.id} id={i.id} message={i.message}/>
+                })}
+
+            </Grid>
+        </Grid>
+    );
+}
 
 export default Profile

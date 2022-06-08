@@ -7,6 +7,7 @@ import MyPhotos from "./components/profile/MyPhotos/MyPhotos";
 import Music from "./components/profile/Music/Music";
 import Following from "./components/profile/Following/Following";
 import Menu from "./components/navbar/Menu";
+import Users from "./components/profile/Users/Users";
 
 export const PATH = {
     PROFILE:'/profile',
@@ -21,7 +22,8 @@ export const PATH = {
     COMMUNITIES: '/communities',
     PHOTOS: '/photos',
     MUSIC: '/music',
-    MENU: '/profile'
+    MENU: '/profile',
+    USERS: '/users'
 }
 
 export const AppRoutes = () => {
@@ -43,6 +45,8 @@ export const AppRoutes = () => {
                 <Route path={PATH.PHOTOS} element={<MyPhotos/>}/>
                 <Route path={PATH.MUSIC} element={<Music/>}/>
                 <Route path='/' element={<Navigate to={PATH.PROFILE}/>}/>
+                <Route path={PATH.USERS} element={<Users/>}/>
+
             </Routes>
     )
 }
