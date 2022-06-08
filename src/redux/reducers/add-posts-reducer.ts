@@ -1,6 +1,8 @@
 // import {AddPostsActionType, AddPostsStateType} from "../../types";
 
 
+import {v1} from "uuid";
+
 export const initialState: any = {
     messages: [
         {id: 'bldwet', message: 'bldwet'}
@@ -11,9 +13,7 @@ export const addPostsReducer = (state: any = initialState, action: any): any => 
 
     switch (action.type) {
         case "ADD_POSTS": {
-            let idPost = action.payload.message
-
-            return  {...state, messages:[...state.messages, {id:idPost, message:action.payload.message}]}
+            return  {...state, messages:[...state.messages, {id:v1(), message:action.payload.message}]}
 
         }
         default: {

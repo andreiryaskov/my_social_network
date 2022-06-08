@@ -6,6 +6,7 @@ const Posts = ({id, message}:any) => {
 
     return (
         <Paper elevation={5} className={s.posts} id={id}>
+            <div className={s.posts_avatar}></div>
             {message}
         </Paper>
     );

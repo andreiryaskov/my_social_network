@@ -1,3 +1,14 @@
 .posts {
   margin-top: 16px;
+  display: flex;
+  .posts_avatar {
+    background-image: url("https://icdn.lenta.ru/images/2018/05/30/22/20180530221332205/wide_7fe601a38687939f2f7f9dc906b53d99.jpg");
+    width: 20px;
+    height: 20px;
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-radius: 100%;
+    margin-right: 15px;
+  }
 }

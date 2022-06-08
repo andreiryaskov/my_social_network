@@ -22,6 +22,7 @@ const AddPostArea = () => {
         // e.preventDefault()
         console.log(typeof value)
         dispatch(addPostsAC(value))
+        setValue('')
     }
 
     return (
