@@ -5,6 +5,7 @@ import PrimarySearchAppBar from "./components/header/Header";
 import Menu from "./components/navbar/Menu";
 import Profile from "./components/profile/Profile";
 import Grid from "@mui/material/Grid";
+import {AppRoutes} from "./Routes";
 
 function App() {
 
@@ -12,14 +13,16 @@ function App() {
         <Container className={'container'}>
             <PrimarySearchAppBar/>
             <div className={'app_wrapper'}>
+
                 <Grid container spacing={2} >
                     <Grid item xs={2}>
                         <Menu/>
                     </Grid>
                     <Grid item xs={10}>
-                        <Profile/>
+                        <AppRoutes/>
                     </Grid>
                 </Grid>
+
             </div>
 
         </Container>

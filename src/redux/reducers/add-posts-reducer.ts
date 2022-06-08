@@ -4,8 +4,8 @@
 import {v1} from "uuid";
 
 export const initialState: AddPostStateType = {
-    messages: [
-    ]
+    messages:
+        []
 }
 
 export type PostsType = {
@@ -22,6 +22,7 @@ export const addPostsReducer = (state: AddPostStateType = initialState, action: 
 
     switch (action.type) {
         case "ADD_POSTS": {
+
             return  {...state, messages:[...state.messages, {id:v1(), message:action.payload.message}]}
 
         }
