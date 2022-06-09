@@ -7,6 +7,7 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Stack from '@mui/material/Stack';
+import {NavLink} from "react-router-dom";
 
 export default function Menu() {
     // const [open, setOpen] = React.useState(false);
@@ -50,17 +51,18 @@ export default function Menu() {
         <Stack direction="row" spacing={2}>
             <Paper elevation={5}>
                 <MenuList>
-                    <MenuItem> My Profile</MenuItem>
-                    <MenuItem> News</MenuItem>
-                    <MenuItem>Messeger</MenuItem>
-                    <MenuItem> Friends</MenuItem>
-                    <MenuItem> Communities</MenuItem>
-                    <MenuItem> Photos</MenuItem>
-                    <MenuItem> Music</MenuItem>
-                    <MenuItem>Logout</MenuItem>
+                    <MenuItem><NavLink to='/profile'>My Profile</NavLink></MenuItem>
+                    <MenuItem> <NavLink to='/news'>News</NavLink></MenuItem>
+                    <MenuItem><NavLink to='/messeger'>Messeger</NavLink></MenuItem>
+                    <MenuItem> <NavLink to='/friend'>Friends</NavLink></MenuItem>
+                    <MenuItem> <NavLink to='/users'>Users</NavLink></MenuItem>
+                    <MenuItem> <NavLink to='/communities'>Communities</NavLink></MenuItem>
+                    <MenuItem> <NavLink to='/photos'>Photos</NavLink></MenuItem><MenuItem> <NavLink
+                    to='/music'>Music</NavLink></MenuItem>
+                    <MenuItem><NavLink to='/logout'>Logout</NavLink></MenuItem>
+
                 </MenuList>
             </Paper>
-            {/*<div>*/}
             {/*    <Popper*/}
             {/*        open={open}*/}
             {/*        anchorEl={anchorRef.current}*/}

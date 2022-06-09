@@ -6,8 +6,8 @@ import Friends from "./components/profile/Friends/Friends";
 import MyPhotos from "./components/profile/MyPhotos/MyPhotos";
 import Music from "./components/profile/Music/Music";
 import Following from "./components/profile/Following/Following";
-import Menu from "./components/navbar/Menu";
-import Users from "./components/profile/Users/Users";
+import UsersContainer from "./components/profile/Users/UsersContainer";
+import Error404 from "./components/page404/page404";
 
 export const PATH = {
     PROFILE:'/profile',
@@ -32,7 +32,7 @@ export const AppRoutes = () => {
                 <Route path='/' element={<Navigate to={PATH.PROFILE}/>}/>
                 <Route path={PATH.PROFILE} element={<Profile/>}/>
                 {/*<Route path={PATH.LOGIN} element={<Login/>}/>*/}
-                {/*<Route path={PATH.ERROR404} element={<Error404/>}/>*/}
+                <Route path={PATH.ERROR404} element={<Error404/>}/>
                 <Route path={'*'} element={<Navigate to={PATH.ERROR404}/>}/>
                 {/*<Route path={PATH.NEWS} element={<News/>}/>*/}
                 {/*<Route path={PATH.REGISTRATION} element={<Registration/>}/>*/}
@@ -45,7 +45,7 @@ export const AppRoutes = () => {
                 <Route path={PATH.PHOTOS} element={<MyPhotos/>}/>
                 <Route path={PATH.MUSIC} element={<Music/>}/>
                 <Route path='/' element={<Navigate to={PATH.PROFILE}/>}/>
-                <Route path={PATH.USERS} element={<Users/>}/>
+                <Route path={PATH.USERS} element={<UsersContainer/>}/>
 
             </Routes>
     )

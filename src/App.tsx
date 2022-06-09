@@ -2,7 +2,7 @@ import React from 'react';
 import {Container} from "@mui/material";
 import './App.css';
 import PrimarySearchAppBar from "./components/header/Header";
-import Menu from "./components/navbar/Menu";
+import Menu from "./components/sidebar/Menu";
 import Profile from "./components/profile/Profile";
 import Grid from "@mui/material/Grid";
 import {AppRoutes} from "./Routes";

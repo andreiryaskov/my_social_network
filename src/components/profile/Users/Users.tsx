@@ -1,35 +1,42 @@
 import React from 'react';
 import s from './Users.module.scss';
 import Paper from "@mui/material/Paper";
-import {AppRoutes} from "../../../Routes";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
-import {useSelector} from "react-redux";
-import {AppRootStateType} from "../../../redux/store";
-import {UsersInitialStateType, UsersType} from "../../../redux/reducers/users-reducer";
+import {UsersType} from "../../../redux/reducers/users-reducer";
+import {Dispatch} from "redux";
+import userImg from '../../../assets/image/users.png'
 
-const Users = () => {
+type UsersContainerType = {
+    changeUsersFollowCallback: (id: string) => void
+    // getUsersCallback: (dispatch: Dispatch<any>) => UsersType[]
+    users: UsersType[]
+}
 
-    const users = useSelector<AppRootStateType, UsersType[]>(state => state.users.users)
+const Users = ({users, changeUsersFollowCallback}:UsersContainerType) => {
+
+    const changeUsersFollow = (id: string) => {
+        changeUsersFollowCallback(id)
+    }
 
     return (
 
-        <Grid direction={"column"}>
+        <Grid container direction={"column"} spacing={2}>
             <Paper className={s.users_wrapper}>
-            {
-                users.map(u => {
-                    return (
+                {
+                    users.map(u => {
+                        return (
 
-                            <Paper className={s.user_container}>
+                            <Paper className={s.user_container} key={u.id}>
                                 <Grid container spacing={2} padding={"20px"}>
                                     <Grid item xs={4}>
                                         <div className={s.user_avatar}>
-                                            <img src={u.photoUrl} alt="avatar"/>
+                                            <img src={u.photos.small || userImg} alt="avatar"/>
                                         </div>
-                                        <Button>
+                                        <Button onClick={() => changeUsersFollow(u.id)}>
                                             {u.followed
-                                            ? 'Unfollow'
-                                            : 'Follow'}
+                                                ? 'Unfollow'
+                                                : 'Follow'}
                                         </Button>
                                     </Grid>
                                     <Grid item xs={8}>
@@ -46,21 +53,26 @@ const Users = () => {
                                             </Grid>
                                             <Grid item xs={6} textAlign={"right"}>
                                                 <div>
-                                                    {u.location.city}
+                                                    {/*{u.location.city}*/}
+                                                    city
                                                 </div>
                                                 <div>
-                                                    {u.location.country}
+                                                    {/*{u.location.country}*/}
+                                                    country
                                                 </div>
                                             </Grid>
                                         </Grid>
                                     </Grid>
                                 </Grid>
                             </Paper>
+                        )
+                    })
+                }
 
-                    )
-                })
-            }
             </Paper>
+            {/*<Button onClick={getUsersCallback}>*/}
+            {/*    Showe More*/}
+            {/*</Button>*/}
         </Grid>
     );
 };
