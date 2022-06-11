@@ -8,9 +8,10 @@ import Music from "./components/profile/Music/Music";
 import Following from "./components/profile/Following/Following";
 import UsersContainer from "./components/profile/Users/UsersContainer";
 import Error404 from "./components/page404/page404";
+import ProfileContainer from "./components/profile/ProfileContainer";
 
 export const PATH = {
-    PROFILE:'/profile',
+    PROFILE:'/profile/*',
     LOGIN:'/login/*',
     ERROR404: '/404',
     NEWS: '/news',
@@ -30,7 +31,7 @@ export const AppRoutes = () => {
     return (
             <Routes>
                 <Route path='/' element={<Navigate to={PATH.PROFILE}/>}/>
-                <Route path={PATH.PROFILE} element={<Profile/>}/>
+                <Route path={PATH.PROFILE} element={<ProfileContainer/>}/>
                 {/*<Route path={PATH.LOGIN} element={<Login/>}/>*/}
                 <Route path={PATH.ERROR404} element={<Error404/>}/>
                 <Route path={'*'} element={<Navigate to={PATH.ERROR404}/>}/>

@@ -10,9 +10,8 @@ import Following from "./Following/Following";
 import Music from "./Music/Music";
 import AddPostArea from "./AddPostArea/AddPostArea";
 import Posts from "./Posts/Posts";
-import {useSelector} from "react-redux";
-import {AppRootStateType} from "../../redux/store";
 import {PostsType} from "../../redux/reducers/add-posts-reducer";
+import {ProfileUserType} from "../../redux/reducers/users-reducer";
 
 const Item = styled(Paper)(({theme}) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -23,9 +22,12 @@ const Item = styled(Paper)(({theme}) => ({
 }));
 
 
-export const Profile = () => {
-// debugger
-    const newPost = useSelector<AppRootStateType, PostsType[]>(state => state.addPosts.messages)
+export type PropsType = {
+    profileUser: ProfileUserType
+    newPost: PostsType[]
+}
+
+export const Profile = ({profileUser, newPost}: PropsType) => {
 
     return (
         <Grid container spacing={2}>
@@ -33,7 +35,7 @@ export const Profile = () => {
                   xs={4}
                   container
                   direction="column">
-                <ProfilePhoto/>
+                <ProfilePhoto profileUser={profileUser}/>
                 <Friends/>
                 <Following/>
                 <Music/>
@@ -43,8 +45,8 @@ export const Profile = () => {
                   container
                   direction="column"
             >
-                <ProfileInfo/>
-                <MyPhotos/>
+                <ProfileInfo profileUser={profileUser}/>
+                <MyPhotos profileUser={profileUser}/>
                 <AddPostArea/>
                 {newPost.map((i) => {
                     return <Posts key={i.id} id={i.id} message={i.message}/>

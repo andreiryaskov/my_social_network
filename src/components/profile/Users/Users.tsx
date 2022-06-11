@@ -5,11 +5,15 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import {UsersType} from "../../../redux/reducers/users-reducer";
 import userImg from '../../../assets/image/users.png'
+import {NavLink} from "react-router-dom";
+import {getProfileUserTC} from "../../../redux/thunk/users-thunk";
+import {useTypedDispatch} from "../../../redux/store";
 
 type UsersContainerType = {
     changeUsersFollowCallback: (id: string) => void
     // getUsersCallback: () => void
     users: UsersType[]
+    // getProfileUserCallback: (id:string) => void
 }
 
 const Users = ({
@@ -18,6 +22,8 @@ const Users = ({
                    // getUsersCallback
                }: UsersContainerType) => {
 
+    const dispatch = useTypedDispatch()
+
     const changeUsersFollow = (id: string) => {
         changeUsersFollowCallback(id)
     }
@@ -25,6 +31,10 @@ const Users = ({
     // const getUsers = () => {
     //     getUsersCallback()
     // }
+
+    const getProfileUser = (id: string) => {
+        dispatch(getProfileUserTC(id))
+    }
 
     return (
 
@@ -37,8 +47,11 @@ const Users = ({
                             <Paper className={s.user_container} key={u.id}>
                                 <Grid container spacing={2} padding={"20px"}>
                                     <Grid item xs={4}>
-                                        <div className={s.user_avatar}>
-                                            <img src={u.photos.small || userImg} alt="avatar"/>
+                                        <div className={s.user_avatar} onClick={() => getProfileUser(u.id)}>
+                                            <NavLink to={`/profile/${u.id}`}>
+                                                <img src={u.photos.small || userImg}/>
+                                            </NavLink>
+
                                         </div>
                                         <Button onClick={() => changeUsersFollow(u.id)}>
                                             {u.followed

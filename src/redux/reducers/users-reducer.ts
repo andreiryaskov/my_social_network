@@ -2,7 +2,25 @@ export const initialState = {
     users: [],
     pageSize: 10,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isLoader: false,
+    profileUser: {
+        userId: 1,
+        lookingForAJob: false,
+        lookingForAJobDescription: '',
+        fullName: '',
+        aboutMe: '',
+        contacts: {
+            github: '',
+            vk: '',
+            website: '',
+            mainLink: ''
+        },
+        photos: {
+            small: '',
+            large: ''
+        }
+    }
 }
 
 export type UsersInitialStateType = {
@@ -10,6 +28,8 @@ export type UsersInitialStateType = {
     pageSize: number,
     totalUsersCount: number
     currentPage: number
+    isLoader: boolean
+    profileUser: ProfileUserType
 
 }
 
@@ -25,6 +45,23 @@ export type UsersType = {
 export type UsersPhotosType = {
     small: string | null
     large: string | null
+}
+
+export type ProfileUserType = {
+    userId: number
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    aboutMe: string,
+    contacts: UserContactsType
+    photos: UsersPhotosType
+}
+
+export type UserContactsType = {
+    github: string
+    vk: string
+    website: string
+    mainLink: string
 }
 
 export const usersReducer = (state: UsersInitialStateType = initialState, action: UsersActionType): UsersInitialStateType => {
@@ -49,6 +86,18 @@ export const usersReducer = (state: UsersInitialStateType = initialState, action
         }
         case 'USERS/CURRENT_PAGE': {
             return {...state, currentPage: action.payload.page}
+        }
+        case "USERS/SET-LOADER": {
+            return {
+                ...state,
+                isLoader: action.payload.isLoader
+            }
+        }
+        case "USERS/GET-PROFILE-USER": {
+            return {
+                ...state,
+                profileUser: action.payload.profileUser
+            }
         }
         default: {
             return state
@@ -87,11 +136,33 @@ export const currentPageAC = (page: number) => {
     } as const
 }
 
+export const loaderAC = (isLoader: boolean) => {
+    return {
+        type: 'USERS/SET-LOADER',
+        payload: {
+            isLoader
+        }
+    } as const
+}
+
+export const getProfileUserAC = (profileUser: ProfileUserType) => {
+    return {
+        type: 'USERS/GET-PROFILE-USER',
+        payload: {
+            profileUser
+        }
+    } as const
+}
+
 export type FollowUsersActionType = ReturnType<typeof followUsersAC>
 export type SetUsersActionType = ReturnType<typeof setUsersAC>
 export type CurrentPageActionType = ReturnType<typeof currentPageAC>
+export type LoaderActionType = ReturnType<typeof loaderAC>
+export type GetProfileUserType = ReturnType<typeof getProfileUserAC>
 
 
 export type UsersActionType = FollowUsersActionType
     | SetUsersActionType
     | CurrentPageActionType
+    | LoaderActionType
+    | GetProfileUserType

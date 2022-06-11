@@ -5,12 +5,14 @@ import {useSelector} from "react-redux";
 import {AppRootStateType, useTypedDispatch} from "../../../redux/store";
 import {usersTC} from "../../../redux/thunk/users-thunk";
 import PaginationControlled from "../../pagination/Pagination";
+import CircularIndeterminate from "../../loader/Loader";
 
 const UsersContainer = () => {
 
     const users = useSelector<AppRootStateType, UsersType[]>(state => state.usersPage.users)
     const currentPage = useSelector<AppRootStateType, number>(state => state.usersPage.currentPage)
     const pageSize = useSelector<AppRootStateType, number>(state => state.usersPage.pageSize)
+    const pagesCount = useSelector<AppRootStateType, number>(state => state.usersPage.totalUsersCount )
 
     const dispatch = useTypedDispatch()
 
@@ -18,9 +20,6 @@ const UsersContainer = () => {
         dispatch(followUsersAC(id))
     }
 
-    // const getUsersCallback = () => {
-    //     dispatch(usersTC(currentPage, pageSize))
-    // }
 
     useEffect(() => {
         dispatch(usersTC(currentPage, pageSize))
@@ -34,10 +33,11 @@ const UsersContainer = () => {
     return (
         <div>
             <PaginationControlled
-                getPaginationCallback={getPaginationCallback}/>
+                getPaginationCallback={getPaginationCallback}
+                pagesCount={pagesCount}
+                pageSize={pageSize}/>
             <Users changeUsersFollowCallback={changeUsersFollowCallback}
                    users={users}
-                // getUsersCallback={getUsersCallback}
             />
         </div>
     );

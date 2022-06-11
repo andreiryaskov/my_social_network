@@ -6,13 +6,16 @@ import Menu from "./components/sidebar/Menu";
 import Profile from "./components/profile/Profile";
 import Grid from "@mui/material/Grid";
 import {AppRoutes} from "./Routes";
+import LinearIndeterminate from "./components/loader/Loader";
 
 function App() {
 
     return (
         <Container className={'container'}>
             <PrimarySearchAppBar/>
+            <LinearIndeterminate/>
             <div className={'app_wrapper'}>
+
 
                 <Grid container spacing={2} >
                     <Grid item xs={2}>
