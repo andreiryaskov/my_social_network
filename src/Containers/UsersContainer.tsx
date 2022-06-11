@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
-import {currentPageAC, followUsersAC, UsersType} from "../../../redux/reducers/users-reducer";
-import Users from "./Users";
+import {currentPageAC, followUsersAC, UsersType} from "../redux/reducers/users-reducer";
+import Users from "../components/profile/Users/Users";
 import {useSelector} from "react-redux";
-import {AppRootStateType, useTypedDispatch} from "../../../redux/store";
-import {usersTC} from "../../../redux/thunk/users-thunk";
-import PaginationControlled from "../../pagination/Pagination";
-import CircularIndeterminate from "../../loader/Loader";
+import {AppRootStateType, useTypedDispatch} from "../redux/store";
+import {usersTC} from "../redux/thunk/users-thunk";
+import PaginationControlled from "../components/pagination/Pagination";
+import CircularIndeterminate from "../components/loader/Loader";
 
 const UsersContainer = () => {
 

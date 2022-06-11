@@ -6,9 +6,9 @@ import Friends from "./components/profile/Friends/Friends";
 import MyPhotos from "./components/profile/MyPhotos/MyPhotos";
 import Music from "./components/profile/Music/Music";
 import Following from "./components/profile/Following/Following";
-import UsersContainer from "./components/profile/Users/UsersContainer";
+import UsersContainer from "./Containers/UsersContainer";
 import Error404 from "./components/page404/page404";
-import ProfileContainer from "./components/profile/ProfileContainer";
+import ProfileContainer from "./Containers/ProfileContainer";
 
 export const PATH = {
     PROFILE:'/profile/*',
@@ -43,7 +43,7 @@ export const AppRoutes = () => {
                 {/*<Route path={PATH.MESSENGER} element={<Messenger/>}/>*/}
                 <Route path={PATH.FRIEND} element={<Friends/>}/>
                 <Route path={PATH.COMMUNITIES} element={<Following/>}/>
-                <Route path={PATH.PHOTOS} element={<MyPhotos/>}/>
+                {/*<Route path={PATH.PHOTOS} element={<MyPhotos/>}/>*/}
                 <Route path={PATH.MUSIC} element={<Music/>}/>
                 <Route path='/' element={<Navigate to={PATH.PROFILE}/>}/>
                 <Route path={PATH.USERS} element={<UsersContainer/>}/>

@@ -1,9 +1,9 @@
 import React from 'react';
-import Profile from "./Profile";
+import Profile from "../components/profile/Profile";
 import {useSelector} from "react-redux";
-import {AppRootStateType} from "../../redux/store";
-import {ProfileUserType} from "../../redux/reducers/users-reducer";
-import {PostsType} from "../../redux/reducers/add-posts-reducer";
+import {AppRootStateType} from "../redux/store";
+import {ProfileUserType} from "../redux/reducers/users-reducer";
+import {PostsType} from "../redux/reducers/add-posts-reducer";
 
 const ProfileContainer = React.memo(() => {
 
