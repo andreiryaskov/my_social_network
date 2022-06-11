@@ -1,5 +1,8 @@
 import axios from "axios";
 import {UsersType} from "../redux/reducers/users-reducer";
+import {useSelector} from "react-redux";
+import {AppRootStateType} from "../redux/store";
+
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -10,8 +13,8 @@ const instance = axios.create({
 })
 
 export const usersAPI = {
-    getUsers() {
-        return instance.get('users')
+    getUsers(currentPage: number, pageSize: number) {
+        return instance.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(res => {
                 return res.data
             })

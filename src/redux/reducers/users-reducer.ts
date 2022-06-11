@@ -1,50 +1,22 @@
-import {v1} from "uuid";
-
-export const initialState:UsersInitialStateType = {
-    users: [
-        // {
-        //     name: 'andrei',
-        //     id: v1(),
-        //     photoUrl: 'https://icdn.lenta.ru/images/2018/05/30/22/20180530221332205/wide_7fe601a38687939f2f7f9dc906b53d99.jpg',
-        //     followed: true,
-        //     status: 'i am a frontend developer, bich',
-        //     location: { city: 'Delaver', country: 'USA'}
-        // },
-        // {
-        //     name: 'vadim kozyulin',
-        //     id: v1(),
-        //     photoUrl: 'https://sgia.mgimo.ru/upload/images/article_img/6036a194ca099.jpg',
-        //     followed: true,
-        //     status: 'i am a frontend developer, bich',
-        //     location: { city: 'Moscow', country: 'Russia'}
-        // },
-        // {
-        //     name: 'nika',
-        //     id: v1(),
-        //     photoUrl: 'https://images.theconversation.com/files/22197/original/vbmrmrkq-1365429883.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop',
-        //     followed: true,
-        //     status: 'what is "Tatcherism"?',
-        //     location: { city: 'London', country: 'GB'}
-        // },
-        // {
-        //     name: 'john',
-        //     id: v1(),
-        //     photoUrl: 'https://cdn.profoto.com/cdn/053149e/contentassets/d39349344d004f9b8963df1551f24bf4/profoto-albert-watson-steve-jobs-pinned-image-original.jpg?width=1280&quality=75&format=jpg',
-        //     followed: false,
-        //     status: 'the story behind the image',
-        //     location: { city: 'silicon valley', country: 'USA'}
-        // }
-    ]
+export const initialState = {
+    users: [],
+    pageSize: 10,
+    totalUsersCount: 0,
+    currentPage: 1
 }
 
 export type UsersInitialStateType = {
-    [key:string]: UsersType[]
+    users: UsersType[]
+    pageSize: number,
+    totalUsersCount: number
+    currentPage: number
+
 }
 
 export type UsersType = {
     name: string
     id: string
-    uniqueUrlName:  string
+    uniqueUrlName: string
     photos: UsersPhotosType
     followed: boolean
     status: string
@@ -55,7 +27,7 @@ export type UsersPhotosType = {
     large: string | null
 }
 
-export const usersReducer = (state: UsersInitialStateType = initialState, action: UsersActionType):UsersInitialStateType => {
+export const usersReducer = (state: UsersInitialStateType = initialState, action: UsersActionType): UsersInitialStateType => {
     switch (action.type) {
         case 'USERS/FOLLOW-USERS': {
             return {
@@ -71,8 +43,12 @@ export const usersReducer = (state: UsersInitialStateType = initialState, action
         case "USERS/SET-USERS": {
             return {
                 ...state,
-                users: action.payload.users
+                users: action.payload.users,
+                totalUsersCount: action.payload.totalUsersCount
             }
+        }
+        case 'USERS/CURRENT_PAGE': {
+            return {...state, currentPage: action.payload.page}
         }
         default: {
             return state
@@ -90,11 +66,22 @@ export const followUsersAC = (userID: string) => {
     } as const
 }
 
-export const setUsersAC = (users:any) => {
+export const setUsersAC = (users: UsersType[], totalUsersCount: number) => {
     return {
         type: 'USERS/SET-USERS',
         payload: {
-            users
+            users,
+            totalUsersCount
+        }
+
+    } as const
+}
+
+export const currentPageAC = (page: number) => {
+    return {
+        type: 'USERS/CURRENT_PAGE',
+        payload: {
+            page
         }
 
     } as const
@@ -102,7 +89,9 @@ export const setUsersAC = (users:any) => {
 
 export type FollowUsersActionType = ReturnType<typeof followUsersAC>
 export type SetUsersActionType = ReturnType<typeof setUsersAC>
+export type CurrentPageActionType = ReturnType<typeof currentPageAC>
 
 
 export type UsersActionType = FollowUsersActionType
     | SetUsersActionType
+    | CurrentPageActionType

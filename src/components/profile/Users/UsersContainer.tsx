@@ -1,14 +1,16 @@
 import React, {useEffect} from 'react';
-import {followUsersAC, UsersType} from "../../../redux/reducers/users-reducer";
+import {currentPageAC, followUsersAC, UsersType} from "../../../redux/reducers/users-reducer";
 import Users from "./Users";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {AppRootStateType, useTypedDispatch} from "../../../redux/store";
 import {usersTC} from "../../../redux/thunk/users-thunk";
-import Button from "@mui/material/Button";
+import PaginationControlled from "../../pagination/Pagination";
 
 const UsersContainer = () => {
 
     const users = useSelector<AppRootStateType, UsersType[]>(state => state.usersPage.users)
+    const currentPage = useSelector<AppRootStateType, number>(state => state.usersPage.currentPage)
+    const pageSize = useSelector<AppRootStateType, number>(state => state.usersPage.pageSize)
 
     const dispatch = useTypedDispatch()
 
@@ -16,17 +18,27 @@ const UsersContainer = () => {
         dispatch(followUsersAC(id))
     }
 
-    const getUsersCallback = () => {
-        dispatch(usersTC())
+    // const getUsersCallback = () => {
+    //     dispatch(usersTC(currentPage, pageSize))
+    // }
+
+    useEffect(() => {
+        dispatch(usersTC(currentPage, pageSize))
+    }, [])
+
+    const getPaginationCallback = (page: number) => {
+        dispatch(currentPageAC(page))
+        dispatch(usersTC(page, pageSize))
     }
 
     return (
         <div>
+            <PaginationControlled
+                getPaginationCallback={getPaginationCallback}/>
             <Users changeUsersFollowCallback={changeUsersFollowCallback}
-            users={users}/>
-            <Button onClick={getUsersCallback}>
-                Showe More
-            </Button>
+                   users={users}
+                // getUsersCallback={getUsersCallback}
+            />
         </div>
     );
 };

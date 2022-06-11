@@ -4,20 +4,27 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import {UsersType} from "../../../redux/reducers/users-reducer";
-import {Dispatch} from "redux";
 import userImg from '../../../assets/image/users.png'
 
 type UsersContainerType = {
     changeUsersFollowCallback: (id: string) => void
-    // getUsersCallback: (dispatch: Dispatch<any>) => UsersType[]
+    // getUsersCallback: () => void
     users: UsersType[]
 }
 
-const Users = ({users, changeUsersFollowCallback}:UsersContainerType) => {
+const Users = ({
+                   users,
+                   changeUsersFollowCallback,
+                   // getUsersCallback
+               }: UsersContainerType) => {
 
     const changeUsersFollow = (id: string) => {
         changeUsersFollowCallback(id)
     }
+
+    // const getUsers = () => {
+    //     getUsersCallback()
+    // }
 
     return (
 
@@ -70,7 +77,7 @@ const Users = ({users, changeUsersFollowCallback}:UsersContainerType) => {
                 }
 
             </Paper>
-            {/*<Button onClick={getUsersCallback}>*/}
+            {/*<Button onClick={getUsers}>*/}
             {/*    Showe More*/}
             {/*</Button>*/}
         </Grid>
