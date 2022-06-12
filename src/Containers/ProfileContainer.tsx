@@ -14,14 +14,19 @@ const ProfileContainer = React.memo(() => {
     const profileUser = useSelector<AppRootStateType, ProfileUserType>(state => state.usersPage.profileUser)
     const newPost = useSelector<AppRootStateType, PostsType[]>(state => state.addPosts.messages)
 
-    const params = useParams<'*'>()['*']
-    const userId = params
+    const params = useParams<'*'>()
+    const userId = params['*']
 
     useEffect(() => {
-        {
-            userId && dispatch(getProfileUserTC(userId))
+        if (userId && userId !== '') {
+            dispatch(getProfileUserTC(userId))
         }
-    }, [dispatch])
+    }, [dispatch, userId])
+
+
+    // useEffect(() => {
+    //     {userId && dispatch(getProfileUserTC(userId))}
+    // }, [dispatch, userId])
 
     return (
         <div>

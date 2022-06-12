@@ -9,9 +9,12 @@ import Following from "./components/profile/Following/Following";
 import UsersContainer from "./Containers/UsersContainer";
 import Error404 from "./components/page404/page404";
 import ProfileContainer from "./Containers/ProfileContainer";
+import {Login} from "@mui/icons-material";
+import Me from "./components/me/Me";
 
 export const PATH = {
-    // PROFILE:'/profile/',
+    PROFILE:'/profile/',
+    ME: '/profile',
     LOGIN:'/login/*',
     ERROR404: '/404',
     NEWS: '/news',
@@ -31,26 +34,22 @@ export const AppRoutes = () => {
 
     return (
             <Routes>
-
-
-                {/*<Route path={PATH.LOGIN} element={<Login/>}/>*/}
-                <Route path={PATH.ERROR404} element={<Error404/>}/>
-                <Route path={'*'} element={<Navigate to={PATH.ERROR404}/>}/>
                 {/*<Route path={PATH.NEWS} element={<News/>}/>*/}
                 {/*<Route path={PATH.REGISTRATION} element={<Registration/>}/>*/}
                 {/*<Route path={PATH.PASSWORD_RECOVERY} element={<RecoveryPassword/>}/>*/}
                 {/*<Route path={PATH.NEW_PASSWORD} element={<NewPassword/>}/>*/}
-
                 {/*<Route path={PATH.MESSENGER} element={<Messenger/>}/>*/}
+                {/*<Route path={PATH.PHOTOS} element={<MyPhotos/>}/>*/}
+
                 <Route path={PATH.FRIEND} element={<Friends/>}/>
                 <Route path={PATH.COMMUNITIES} element={<Following/>}/>
-                {/*<Route path={PATH.PHOTOS} element={<MyPhotos/>}/>*/}
+                <Route path={PATH.LOGIN} element={<Login/>}/>
+                <Route path={PATH.ERROR404} element={<Error404/>}/>
+                <Route path={'*'} element={<Navigate to={PATH.ERROR404}/>}/>
                 <Route path={PATH.MUSIC} element={<Music/>}/>
-                {/*<Route path='/' element={<Navigate to={PATH.PROFILE}/>}/>*/}
                 <Route path={PATH.USERS} element={<UsersContainer/>}/>
-                <Route path={'/profile/*'} element={<ProfileContainer/>}/>
-                {/*<Route path='/' element={<Navigate to={'/profile/'}/>}/>*/}
-
+                <Route path={`${PATH.PROFILE}*`} element={<ProfileContainer/>}/>
+                <Route path={PATH.ME} element={<Me/>}/>
             </Routes>
     )
 }
