@@ -1,5 +1,5 @@
 import React from 'react'
-import {Navigate, Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes, useParams} from "react-router-dom";
 
 import Profile from "./components/profile/Profile";
 import Friends from "./components/profile/Friends/Friends";
@@ -11,7 +11,7 @@ import Error404 from "./components/page404/page404";
 import ProfileContainer from "./Containers/ProfileContainer";
 
 export const PATH = {
-    PROFILE:'/profile/*',
+    // PROFILE:'/profile/',
     LOGIN:'/login/*',
     ERROR404: '/404',
     NEWS: '/news',
@@ -23,15 +23,16 @@ export const PATH = {
     COMMUNITIES: '/communities',
     PHOTOS: '/photos',
     MUSIC: '/music',
-    MENU: '/profile',
     USERS: '/users'
 }
 
 export const AppRoutes = () => {
+
+
     return (
             <Routes>
-                <Route path='/' element={<Navigate to={PATH.PROFILE}/>}/>
-                <Route path={PATH.PROFILE} element={<ProfileContainer/>}/>
+
+
                 {/*<Route path={PATH.LOGIN} element={<Login/>}/>*/}
                 <Route path={PATH.ERROR404} element={<Error404/>}/>
                 <Route path={'*'} element={<Navigate to={PATH.ERROR404}/>}/>
@@ -45,8 +46,10 @@ export const AppRoutes = () => {
                 <Route path={PATH.COMMUNITIES} element={<Following/>}/>
                 {/*<Route path={PATH.PHOTOS} element={<MyPhotos/>}/>*/}
                 <Route path={PATH.MUSIC} element={<Music/>}/>
-                <Route path='/' element={<Navigate to={PATH.PROFILE}/>}/>
+                {/*<Route path='/' element={<Navigate to={PATH.PROFILE}/>}/>*/}
                 <Route path={PATH.USERS} element={<UsersContainer/>}/>
+                <Route path={'/profile/*'} element={<ProfileContainer/>}/>
+                {/*<Route path='/' element={<Navigate to={'/profile/'}/>}/>*/}
 
             </Routes>
     )
