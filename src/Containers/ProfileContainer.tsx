@@ -23,11 +23,6 @@ const ProfileContainer = React.memo(() => {
         }
     }, [dispatch, userId])
 
-
-    // useEffect(() => {
-    //     {userId && dispatch(getProfileUserTC(userId))}
-    // }, [dispatch, userId])
-
     return (
         <div>
             <Profile profileUser={profileUser}

@@ -12,7 +12,7 @@ export default function ProfilePhoto({profileUser}: PropsType) {
 
     return (
         <Paper elevation={5} className={s.photo}>
-            <img src={profileUser.photos.large || profileUser.photos.small || avatar}
+            <img src={profileUser.photos.large || avatar}
                  alt="photo"/>
 
         </Paper>
