@@ -7,12 +7,13 @@ import Profile from "./components/profile/Profile";
 import Grid from "@mui/material/Grid";
 import {AppRoutes} from "./Routes";
 import LinearIndeterminate from "./components/loader/Loader";
+import ResponsiveAppBar from "./components/header/Header";
 
 function App() {
 
     return (
         <Container className={'container'}>
-            <PrimarySearchAppBar/>
+            <ResponsiveAppBar/>
             <LinearIndeterminate/>
             <div className={'app_wrapper'}>
 

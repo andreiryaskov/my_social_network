@@ -1,7 +1,4 @@
 import axios from "axios";
-import {UsersType} from "../redux/reducers/users-reducer";
-import {useSelector} from "react-redux";
-import {AppRootStateType} from "../redux/store";
 
 
 const instance = axios.create({
@@ -26,10 +23,16 @@ export const usersAPI = {
                 return res.data
             })
     },
-    authMe() {
-        return instance.get('/auth/me')
+    authMe(endPoint: string) {
+        return instance.get(`/auth/${endPoint}`)
             .then(res => {
                 return res.data
             })
-    }
+    },
+    // authLogin(endPoint) {
+    //     return instance.delete(`/auth/${endPoint}`)
+    //     .then(res => {
+    //         return res.data
+    //     })
+    // }
 }

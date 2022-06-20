@@ -2,7 +2,8 @@ export const initialState = {
     id: null,
     email: null,
     login: null,
-    isLoader: false
+    isLoader: false,
+    resultCode: null
 }
 
 export type AuthInitialStateType = {
@@ -13,13 +14,19 @@ export type AuthInitialStateType = {
 }
 
 
-
-export const authReducer = (state: any, action: ActionsType):any => {
-    switch(action.type) {
-        case 'AUTH/SET-USER-DATA':
+export const authReducer = (state: any = initialState, action: ActionsType): any => {
+    switch (action.type) {
+        case 'AUTH/AUTH-ME':
             return {
-                ...state
+                ...state,
+                ...action.payload
             }
+        case "AUTH/AUTH-LOGIN":
+            return {
+                ...state,
+                state: {}
+            }
+
         default: {
             return state
         }
@@ -27,17 +34,26 @@ export const authReducer = (state: any, action: ActionsType):any => {
 }
 
 
-export const setUserDataAC = (id: number, email: string, login: string) => {
+export const authMeAC = (id: number, email: string, login: string, resultCode: number) => {
     return {
-        type: 'AUTH/SET-USER-DATA',
+        type: 'AUTH/AUTH-ME',
         payload: {
             id,
             email,
-            login
+            login,
+            resultCode
         }
     } as const
 }
 
-export type setUserDataActionType = ReturnType<typeof setUserDataAC>
+export const authLoginAC = () => {
+    return {
+        type: 'AUTH/AUTH-LOGIN'
+    } as const
+}
 
-export type ActionsType = setUserDataActionType
+export type AuthMeActionType = ReturnType<typeof authMeAC>
+export type AuthLoginActionType = ReturnType<typeof authLoginAC>
+
+export type ActionsType = AuthMeActionType
+    | AuthLoginActionType
