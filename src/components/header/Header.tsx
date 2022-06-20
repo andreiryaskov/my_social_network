@@ -260,7 +260,7 @@ import {authMeTC} from "../../redux/thunk/auth-thunk";
 import {useTypedDispatch} from "../../redux/store";
 import {useSelector} from "react-redux";
 import avatar from '../../assets/image/users.png';
-import {authLoginAC} from "../../redux/reducers/auth-reducer";
+import {NavLink} from "react-router-dom";
 
 // const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Logout'];
@@ -298,6 +298,14 @@ const ResponsiveAppBar = () => {
         }
 
     }
+
+    let goTo
+    if (login) {
+        goTo = 'profile'
+    } else {
+        goTo = '404'
+    }
+
 
     return (
         <AppBar position="static">
@@ -423,15 +431,17 @@ const ResponsiveAppBar = () => {
                             <MenuItem
                                 // onClick={handleCloseUserMenu}
                             >
-                                <Typography textAlign="center">Profile</Typography>
+                                <Typography textAlign="center">
+                                    <NavLink to={`/${goTo}`}>Profile</NavLink>
+                                </Typography>
                             </MenuItem>
                             <MenuItem onClick={handleCloseUserMenu}>
                                 <Typography textAlign="center" onClick={changeLogin}>
                                     {
-                                    login
-                                        ? 'Logout'
-                                        : 'Login'
-                                }
+                                        login
+                                            ? 'Logout'
+                                            : 'Login'
+                                    }
                                 </Typography>
                             </MenuItem>
                         </Menu>

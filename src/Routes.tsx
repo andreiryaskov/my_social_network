@@ -11,6 +11,7 @@ import Error404 from "./components/page404/page404";
 import ProfileContainer from "./Containers/ProfileContainer";
 import {Login} from "@mui/icons-material";
 import Me from "./components/me/Me";
+import {useSelector} from "react-redux";
 
 export const PATH = {
     PROFILE:'/profile/',
@@ -30,6 +31,8 @@ export const PATH = {
 }
 
 export const AppRoutes = () => {
+
+    const authMeLogin = useSelector<any, any>(state => state.auth)
 
 
     return (
