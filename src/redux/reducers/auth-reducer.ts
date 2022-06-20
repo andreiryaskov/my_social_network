@@ -2,8 +2,7 @@ export const initialState = {
     id: null,
     email: null,
     login: null,
-    isLoader: false,
-    resultCode: null
+    isLoader: false
 }
 
 export type AuthInitialStateType = {
@@ -34,14 +33,13 @@ export const authReducer = (state: any = initialState, action: ActionsType): any
 }
 
 
-export const authMeAC = (id: number, email: string, login: string, resultCode: number) => {
+export const authMeAC = (id: number, email: string, login: string) => {
     return {
         type: 'AUTH/AUTH-ME',
         payload: {
             id,
             email,
-            login,
-            resultCode
+            login
         }
     } as const
 }

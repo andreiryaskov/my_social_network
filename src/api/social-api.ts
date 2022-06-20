@@ -23,16 +23,16 @@ export const usersAPI = {
                 return res.data
             })
     },
-    authMe(endPoint: string) {
-        return instance.get(`/auth/${endPoint}`)
+    authMe() {
+        return instance.get(`/auth/me`)
             .then(res => {
                 return res.data
             })
     },
-    // authLogin(endPoint) {
-    //     return instance.delete(`/auth/${endPoint}`)
-    //     .then(res => {
-    //         return res.data
-    //     })
-    // }
+    authLogin() {
+        return instance.delete(`/auth/login`)
+        .then(res => {
+            return res.data
+        })
+    }
 }
