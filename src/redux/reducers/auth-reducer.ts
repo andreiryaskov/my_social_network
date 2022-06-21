@@ -25,8 +25,8 @@ export const authReducer = (state: any = initialState, action: ActionsType): any
         case "AUTH/AUTH-LOGIN":
             return {
                 ...state,
-                isAuth: false,
-                state: {}
+                state: {},
+                isAuth: false
             }
 
         default: {

@@ -22,13 +22,18 @@ const settings = ['Profile', 'Logout'];
 
 type PropsType = {
     changeLogin: () => void
+    deleteSetUserData: () => void
 }
 
-const ResponsiveAppBar = ({changeLogin}:PropsType) => {
+const ResponsiveAppBar = ({changeLogin, deleteSetUserData}:PropsType) => {
     let auth = useSelector<any, any>(state => state.auth)
 
     const changeLoginCallback = () => {
         changeLogin()
+    }
+
+    const deleteSetUserDataCallback = () => {
+        deleteSetUserData()
     }
 
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -182,11 +187,11 @@ const ResponsiveAppBar = ({changeLogin}:PropsType) => {
                                 {/*</Typography>*/}
                             {/*</MenuItem>*/}
                             <MenuItem onClick={handleCloseUserMenu}>
-                                <Typography textAlign="center" onClick={changeLoginCallback}>
+                                <Typography textAlign="center">
                                         {
                                             auth.isAuth
-                                                ? 'Logout'
-                                                : <NavLink to={'/login'}>Login</NavLink>
+                                                ? <NavLink to={'/login'} onClick={deleteSetUserDataCallback}>Logout</NavLink>
+                                                : <NavLink to={'/profile'} onClick={changeLoginCallback}>Login</NavLink>
                                         }
                                 </Typography>
                             </MenuItem>

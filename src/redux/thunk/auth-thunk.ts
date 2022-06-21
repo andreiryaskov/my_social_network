@@ -15,7 +15,7 @@ export const authMeTC = () => (dispatch: Dispatch) => {
 export const authLoginTC = () => (dispatch: Dispatch) => {
     usersAPI.authLogin()
         .then(res => {
-            if (res.data.resultCode === 1) {
+            if (res.resultCode === 0) {
                 dispatch(authLoginAC())
             }
         })
