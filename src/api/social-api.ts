@@ -16,7 +16,7 @@ export const usersAPI = {
                 return res.data
             })
     },
-    getProfileUser(userId: string) {
+    getProfileUser(userId: number) {
         return instance.get
         (`profile/${userId}`)
             .then(res => {
@@ -34,5 +34,18 @@ export const usersAPI = {
         .then(res => {
             return res.data
         })
-    }
+    },
+    follow(userId: number) {
+        return instance.post(`/follow/${userId}`)
+            .then(res => {
+                return res.data
+            })
+    },
+    unFollow(userId: number) {
+        return instance.delete(`/follow/${userId}`)
+            .then(res => {
+                return res.data
+            })
+    },
+
 }

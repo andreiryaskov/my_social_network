@@ -3,7 +3,7 @@ import {currentPageAC, followUsersAC, UsersType} from "../redux/reducers/users-r
 import Users from "../components/profile/Users/Users";
 import {useSelector} from "react-redux";
 import {AppRootStateType, useTypedDispatch} from "../redux/store";
-import {usersTC} from "../redux/thunk/users-thunk";
+import {followUserTC, unFollowUserTC, usersTC} from "../redux/thunk/users-thunk";
 import PaginationControlled from "../components/pagination/Pagination";
 
 const UsersContainer = () => {
@@ -15,8 +15,12 @@ const UsersContainer = () => {
 
     const dispatch = useTypedDispatch()
 
-    const changeUsersFollowCallback = (id: string) => {
-        dispatch(followUsersAC(id))
+    const changeUsersFollow = (id: number) => {
+        dispatch(followUserTC(id))
+    }
+
+    const changeUsersUnFollow = (id: number) => {
+        dispatch(unFollowUserTC(id))
     }
 
 
@@ -35,8 +39,8 @@ const UsersContainer = () => {
                 getPaginationCallback={getPaginationCallback}
                 pagesCount={pagesCount}
                 pageSize={pageSize}/>
-            <Users changeUsersFollowCallback={changeUsersFollowCallback}
-                   users={users}
+            <Users changeUsersFollow={changeUsersFollow}
+                   users={users} changeUsersUnFollow={changeUsersUnFollow}
             />
         </div>
     );

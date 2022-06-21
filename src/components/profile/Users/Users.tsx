@@ -10,29 +10,35 @@ import {getProfileUserTC} from "../../../redux/thunk/users-thunk";
 import {useTypedDispatch} from "../../../redux/store";
 
 type UsersContainerType = {
-    changeUsersFollowCallback: (id: string) => void
+    changeUsersFollow: (id: number) => void
     // getUsersCallback: () => void
     users: UsersType[]
     // getProfileUserCallback: (id:string) => void
+    changeUsersUnFollow: (id: number) => void
 }
 
 const Users = ({
                    users,
-                   changeUsersFollowCallback,
+                   changeUsersFollow,
+                   changeUsersUnFollow
                    // getUsersCallback
                }: UsersContainerType) => {
 
     const dispatch = useTypedDispatch()
 
-    const changeUsersFollow = (id: string) => {
-        changeUsersFollowCallback(id)
+    const changeUsersFollowCallback = (id: number) => {
+        changeUsersFollow(id)
+    }
+
+    const changeUsersUnFollowCallback = (id: number) => {
+        changeUsersUnFollow(id)
     }
 
     // const getUsers = () => {
     //     getUsersCallback()
     // }
 
-    const getProfileUser = (id: string) => {
+    const getProfileUser = (id: number) => {
         dispatch(getProfileUserTC(id))
     }
 
@@ -53,11 +59,12 @@ const Users = ({
                                             </NavLink>
 
                                         </div>
-                                        <Button onClick={() => changeUsersFollow(u.id)}>
+                                        {/*<Button onClick={() => changeUsersFollow(u.id)}>*/}
                                             {u.followed
-                                                ? 'Unfollow'
-                                                : 'Follow'}
-                                        </Button>
+                                                ? <Button onClick={() => changeUsersUnFollowCallback(u.id)}>Unfollow</Button>
+                                                : <Button onClick={() => changeUsersFollowCallback(u.id)}>Follow</Button>
+                                                    }
+                                        {/*</Button>*/}
                                     </Grid>
                                     <Grid item xs={8}>
                                         <Grid container spacing={2}

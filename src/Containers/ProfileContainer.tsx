@@ -7,7 +7,7 @@ import {PostsType} from "../redux/reducers/add-posts-reducer";
 import {useParams} from "react-router-dom";
 import {getProfileUserTC} from "../redux/thunk/users-thunk";
 
-const ProfileContainer = React.memo(() => {
+const ProfileContainer = () => {
 
     const dispatch = useTypedDispatch()
 
@@ -15,13 +15,13 @@ const ProfileContainer = React.memo(() => {
     const newPost = useSelector<AppRootStateType, PostsType[]>(state => state.addPosts.messages)
 
     const params = useParams<'*'>()
-    const userId = params['*']
+    const userIdFromParams = Number(params['*'])
 
     useEffect(() => {
-        if (userId && userId !== '') {
-            dispatch(getProfileUserTC(userId))
+        if (userIdFromParams && userIdFromParams !== 0) {
+            dispatch(getProfileUserTC(userIdFromParams))
         }
-    }, [dispatch, userId])
+    }, [dispatch, userIdFromParams])
 
     return (
         <div>
@@ -29,6 +29,6 @@ const ProfileContainer = React.memo(() => {
                      newPost={newPost}/>
         </div>
     );
-})
+}
 
 export default ProfileContainer;

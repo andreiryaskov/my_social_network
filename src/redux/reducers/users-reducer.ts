@@ -5,7 +5,7 @@ export const initialState = {
     currentPage: 1,
     isLoader: false,
     profileUser: {
-        userId: 1,
+        userId: 0,
         lookingForAJob: false,
         lookingForAJobDescription: '',
         fullName: '',
@@ -35,7 +35,7 @@ export type UsersInitialStateType = {
 
 export type UsersType = {
     name: string
-    id: string
+    id: number
     uniqueUrlName: string
     photos: UsersPhotosType
     followed: boolean
@@ -70,13 +70,25 @@ export const usersReducer = (state: UsersInitialStateType = initialState, action
             return {
                 ...state,
                 users: state.users.map(u => {
-                    if (u.id === action.payload.userID) {
+                    if (u.id === action.payload.userId) {
                         return {...u, followed: !u.followed}
                     }
                     return u
                 })
             }
         }
+        // case "USERS/UN-FOLLOW-USERS": {
+        //     return {
+        //         ...state,
+        //         users: state.users.map(u => {
+        //             if (u.id === action.payload.userId) {
+        //                 return {...u, followed: false}
+        //             }
+        //             return u
+        //         })
+        //     }
+        // }
+
         case "USERS/SET-USERS": {
             return {
                 ...state,
@@ -105,15 +117,24 @@ export const usersReducer = (state: UsersInitialStateType = initialState, action
     }
 }
 
-export const followUsersAC = (userID: string) => {
+export const followUsersAC = (userId: number) => {
     return {
         type: 'USERS/FOLLOW-USERS',
         payload: {
-            userID
+            userId
         }
 
     } as const
 }
+
+// export const unFollowUserAC = (userId: number) => {
+//     return {
+//         type: 'USERS/UN-FOLLOW-USERS',
+//         payload: {
+//             userId
+//         }
+//     } as const
+// }
 
 export const setUsersAC = (users: UsersType[], totalUsersCount: number) => {
     return {
@@ -154,7 +175,9 @@ export const getProfileUserAC = (profileUser: ProfileUserType) => {
     } as const
 }
 
+
 export type FollowUsersActionType = ReturnType<typeof followUsersAC>
+// export type UnFollowUsersActionType = ReturnType<typeof unFollowUserAC>
 export type SetUsersActionType = ReturnType<typeof setUsersAC>
 export type CurrentPageActionType = ReturnType<typeof currentPageAC>
 export type LoaderActionType = ReturnType<typeof loaderAC>
@@ -166,3 +189,4 @@ export type UsersActionType = FollowUsersActionType
     | CurrentPageActionType
     | LoaderActionType
     | GetProfileUserType
+    // | UnFollowUsersActionType
