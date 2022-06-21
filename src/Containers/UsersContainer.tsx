@@ -5,14 +5,13 @@ import {useSelector} from "react-redux";
 import {AppRootStateType, useTypedDispatch} from "../redux/store";
 import {usersTC} from "../redux/thunk/users-thunk";
 import PaginationControlled from "../components/pagination/Pagination";
-import CircularIndeterminate from "../components/loader/Loader";
 
 const UsersContainer = () => {
 
     const users = useSelector<AppRootStateType, UsersType[]>(state => state.usersPage.users)
     const currentPage = useSelector<AppRootStateType, number>(state => state.usersPage.currentPage)
     const pageSize = useSelector<AppRootStateType, number>(state => state.usersPage.pageSize)
-    const pagesCount = useSelector<AppRootStateType, number>(state => state.usersPage.totalUsersCount )
+    const pagesCount = useSelector<AppRootStateType, number>(state => state.usersPage.totalUsersCount)
 
     const dispatch = useTypedDispatch()
 

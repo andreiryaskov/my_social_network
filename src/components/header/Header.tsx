@@ -11,21 +11,19 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import {authLoginTC, authMeTC} from "../../redux/thunk/auth-thunk";
-import {useTypedDispatch} from "../../redux/store";
 import {useSelector} from "react-redux";
 import avatar from '../../assets/image/users.png';
 import {NavLink} from "react-router-dom";
 
 // const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Logout'];
+// const settings = ['Profile', 'Logout'];
 
 type PropsType = {
     changeLogin: () => void
     deleteSetUserData: () => void
 }
 
-const ResponsiveAppBar = ({changeLogin, deleteSetUserData}:PropsType) => {
+const ResponsiveAppBar = ({changeLogin, deleteSetUserData}: PropsType) => {
     let auth = useSelector<any, any>(state => state.auth)
 
     const changeLoginCallback = () => {
@@ -182,17 +180,18 @@ const ResponsiveAppBar = ({changeLogin, deleteSetUserData}:PropsType) => {
                             {/*<MenuItem*/}
                             {/*    // onClick={handleCloseUserMenu}*/}
                             {/*>*/}
-                                {/*<Typography textAlign="center">*/}
-                                {/*    <NavLink to={`/${goToPage}`}>Profile</NavLink>*/}
-                                {/*</Typography>*/}
+                            {/*<Typography textAlign="center">*/}
+                            {/*    <NavLink to={`/${goToPage}`}>Profile</NavLink>*/}
+                            {/*</Typography>*/}
                             {/*</MenuItem>*/}
                             <MenuItem onClick={handleCloseUserMenu}>
                                 <Typography textAlign="center">
-                                        {
-                                            auth.isAuth
-                                                ? <NavLink to={'/login'} onClick={deleteSetUserDataCallback}>Logout</NavLink>
-                                                : <NavLink to={'/profile'} onClick={changeLoginCallback}>Login</NavLink>
-                                        }
+                                    {
+                                        auth.isAuth
+                                            ?
+                                            <NavLink to={'/login'} onClick={deleteSetUserDataCallback}>Logout</NavLink>
+                                            : <NavLink to={'/profile'} onClick={changeLoginCallback}>Login</NavLink>
+                                    }
                                 </Typography>
                             </MenuItem>
                         </Menu>

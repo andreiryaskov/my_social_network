@@ -9,15 +9,18 @@ import Following from "./components/profile/Following/Following";
 import UsersContainer from "./Containers/UsersContainer";
 import Error404 from "./components/page404/page404";
 import ProfileContainer from "./Containers/ProfileContainer";
-import {Login} from "@mui/icons-material";
+// import {Login} from "@mui/icons-material";
 import Me from "./components/me/Me";
 import {useSelector} from "react-redux";
+import {AppRootStateType} from "./redux/store";
+import {AuthInitialStateType} from "./redux/reducers/auth-reducer";
+import Login from "./components/Login";
 
 export const PATH = {
-    PROFILE:'/profile/',
+    PROFILE: '/profile/',
     USERS: '/users',
     ERROR404: '/404',
-    LOGIN:'/login',
+    LOGIN: '/login',
     // NEWS: '/news',
     // REGISTRATION: '/registration',
     // PASSWORD_RECOVERY: '/password-recovery',
@@ -32,30 +35,29 @@ export const PATH = {
 
 export const AppRoutes = () => {
 
-    const authMeLogin = useSelector<any, any>(state => state.auth)
+    // const authMeLogin = useSelector<AppRootStateType, AuthInitialStateType>(state => state.auth)
 
 
     return (
-            <Routes>
-                <Route path={PATH.ERROR404} element={<Error404/>}/>
-                <Route path={'*'} element={<Navigate to={PATH.ERROR404}/>}/>
-                <Route path={PATH.USERS} element={<UsersContainer/>}/>
-                <Route path={`${PATH.PROFILE}*`} element={<ProfileContainer/>}/>
-                <Route path={PATH.PROFILE} element={<Me/>}/>
-                <Route path={PATH.LOGIN} element={<Login/>}/>
+        <Routes>
+            <Route path={PATH.ERROR404} element={<Error404/>}/>
+            <Route path={'*'} element={<Navigate to={PATH.ERROR404}/>}/>
+            <Route path={PATH.USERS} element={<UsersContainer/>}/>
+            <Route path={`${PATH.PROFILE}*`} element={<ProfileContainer/>}/>
+            <Route path={PATH.PROFILE} element={<Me/>}/>
+            <Route path={PATH.LOGIN} element={<Login/>}/>
 
-                {/*<Route path={PATH.NEWS} element={<News/>}/>*/}
-                {/*<Route path={PATH.REGISTRATION} element={<Registration/>}/>*/}
-                {/*<Route path={PATH.PASSWORD_RECOVERY} element={<RecoveryPassword/>}/>*/}
-                {/*<Route path={PATH.NEW_PASSWORD} element={<NewPassword/>}/>*/}
-                {/*<Route path={PATH.MESSENGER} element={<Messenger/>}/>*/}
-                {/*<Route path={PATH.PHOTOS} element={<MyPhotos/>}/>*/}
-                {/*<Route path={PATH.MUSIC} element={<Music/>}/>*/}
-                {/*<Route path={PATH.FRIEND} element={<Friends/>}/>*/}
-                {/*<Route path={PATH.COMMUNITIES} element={<Following/>}/>*/}
+            {/*<Route path={PATH.NEWS} element={<News/>}/>*/}
+            {/*<Route path={PATH.REGISTRATION} element={<Registration/>}/>*/}
+            {/*<Route path={PATH.PASSWORD_RECOVERY} element={<RecoveryPassword/>}/>*/}
+            {/*<Route path={PATH.NEW_PASSWORD} element={<NewPassword/>}/>*/}
+            {/*<Route path={PATH.MESSENGER} element={<Messenger/>}/>*/}
+            {/*<Route path={PATH.PHOTOS} element={<MyPhotos/>}/>*/}
+            {/*<Route path={PATH.MUSIC} element={<Music/>}/>*/}
+            {/*<Route path={PATH.FRIEND} element={<Friends/>}/>*/}
+            {/*<Route path={PATH.COMMUNITIES} element={<Following/>}/>*/}
 
 
-
-            </Routes>
+        </Routes>
     )
 }

@@ -1,8 +1,7 @@
 export const initialState = {
-    id: null,
-    email: null,
-    login: null,
-    isLoader: false,
+    id: 0,
+    email: '',
+    login: '',
     isAuth: false
 }
 
@@ -10,11 +9,10 @@ export type AuthInitialStateType = {
     id: number
     email: string
     login: string
-    isLoader: boolean
+    isAuth: boolean
 }
 
-
-export const authReducer = (state: any = initialState, action: ActionsType): any => {
+export const authReducer = (state: AuthInitialStateType = initialState, action: ActionsType): AuthInitialStateType => {
     switch (action.type) {
         case 'AUTH/AUTH-ME':
             return {
@@ -25,7 +23,6 @@ export const authReducer = (state: any = initialState, action: ActionsType): any
         case "AUTH/AUTH-LOGIN":
             return {
                 ...state,
-                state: {},
                 isAuth: false
             }
 
