@@ -20,11 +20,17 @@ import {NavLink} from "react-router-dom";
 // const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Logout'];
 
-const ResponsiveAppBar = () => {
+type PropsType = {
+    changeLogin: () => void
+}
+
+const ResponsiveAppBar = ({changeLogin}:PropsType) => {
     let auth = useSelector<any, any>(state => state.auth)
 
-    const dispatch = useTypedDispatch()
-    const [login, setLogin] = React.useState<boolean>(false)
+    const changeLoginCallback = () => {
+        changeLogin()
+    }
+
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -42,25 +48,6 @@ const ResponsiveAppBar = () => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
-
-    const changeLogin = () => {
-        if (login === false) {
-            dispatch(authMeTC())
-            setLogin(true)
-        } else {
-            dispatch(authLoginTC())
-            setLogin(false)
-        }
-
-    }
-
-    let goToPage
-    if (login) {
-        goToPage = 'profile'
-    } else {
-        goToPage = '404'
-    }
-
 
     return (
         <AppBar position="static">
@@ -82,7 +69,11 @@ const ResponsiveAppBar = () => {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        {
+                            auth.isAuth
+                                ? auth.login
+                                : ''
+                        }
                     </Typography>
 
                     <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
@@ -122,24 +113,24 @@ const ResponsiveAppBar = () => {
                         </Menu>
                     </Box>
                     <AdbIcon sx={{display: {xs: 'flex', md: 'none'}, mr: 1}}/>
-                    <Typography
-                        variant="h5"
-                        noWrap
-                        component="a"
-                        href=""
-                        sx={{
-                            mr: 2,
-                            display: {xs: 'flex', md: 'none'},
-                            flexGrow: 1,
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        LOGO
-                    </Typography>
+                    {/*<Typography*/}
+                    {/*    variant="h5"*/}
+                    {/*    noWrap*/}
+                    {/*    component="a"*/}
+                    {/*    href=""*/}
+                    {/*    sx={{*/}
+                    {/*        mr: 2,*/}
+                    {/*        display: {xs: 'flex', md: 'none'},*/}
+                    {/*        flexGrow: 1,*/}
+                    {/*        fontFamily: 'monospace',*/}
+                    {/*        fontWeight: 700,*/}
+                    {/*        letterSpacing: '.3rem',*/}
+                    {/*        color: 'inherit',*/}
+                    {/*        textDecoration: 'none',*/}
+                    {/*    }}*/}
+                    {/*>*/}
+                    {/*    LOGO*/}
+                    {/*</Typography>*/}
                     <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
                         {/*{pages.map((page) => (*/}
                         {/*    <Button*/}
@@ -156,7 +147,7 @@ const ResponsiveAppBar = () => {
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
                                 <Avatar alt="Remy Sharp" src={
-                                    login
+                                    auth.isAuth
                                         ? avatar
                                         : "/static/images/avatar/2.jpg"
                                 }/>
@@ -183,20 +174,20 @@ const ResponsiveAppBar = () => {
                             {/*        <Typography textAlign="center">{setting}</Typography>*/}
                             {/*    </MenuItem>*/}
                             {/*))}*/}
-                            <MenuItem
-                                // onClick={handleCloseUserMenu}
-                            >
-                                <Typography textAlign="center">
-                                    <NavLink to={`/${goToPage}`}>Profile</NavLink>
-                                </Typography>
-                            </MenuItem>
+                            {/*<MenuItem*/}
+                            {/*    // onClick={handleCloseUserMenu}*/}
+                            {/*>*/}
+                                {/*<Typography textAlign="center">*/}
+                                {/*    <NavLink to={`/${goToPage}`}>Profile</NavLink>*/}
+                                {/*</Typography>*/}
+                            {/*</MenuItem>*/}
                             <MenuItem onClick={handleCloseUserMenu}>
-                                <Typography textAlign="center" onClick={changeLogin}>
-                                    {
-                                        login
-                                            ? 'Logout'
-                                            : 'Login'
-                                    }
+                                <Typography textAlign="center" onClick={changeLoginCallback}>
+                                        {
+                                            auth.isAuth
+                                                ? 'Logout'
+                                                : <NavLink to={'/login'}>Login</NavLink>
+                                        }
                                 </Typography>
                             </MenuItem>
                         </Menu>

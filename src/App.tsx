@@ -8,17 +8,18 @@ import Grid from "@mui/material/Grid";
 import {AppRoutes} from "./Routes";
 import LinearIndeterminate from "./components/loader/Loader";
 import ResponsiveAppBar from "./components/header/Header";
+import HeaderContainer from "./Containers/HeaderContainer";
 
 function App() {
 
     return (
         <Container className={'container'}>
-            <ResponsiveAppBar/>
+            <HeaderContainer/>
             <LinearIndeterminate/>
             <div className={'app_wrapper'}>
 
 
-                <Grid container spacing={2} >
+                <Grid container spacing={2}>
                     <Grid item xs={2}>
                         <Menu/>
                     </Grid>

@@ -17,7 +17,7 @@ export const PATH = {
     PROFILE:'/profile/',
     USERS: '/users',
     ERROR404: '/404',
-    // LOGIN:'/login/*',
+    LOGIN:'/login',
     // NEWS: '/news',
     // REGISTRATION: '/registration',
     // PASSWORD_RECOVERY: '/password-recovery',
@@ -42,6 +42,7 @@ export const AppRoutes = () => {
                 <Route path={PATH.USERS} element={<UsersContainer/>}/>
                 <Route path={`${PATH.PROFILE}*`} element={<ProfileContainer/>}/>
                 <Route path={PATH.PROFILE} element={<Me/>}/>
+                <Route path={PATH.LOGIN} element={<Login/>}/>
 
                 {/*<Route path={PATH.NEWS} element={<News/>}/>*/}
                 {/*<Route path={PATH.REGISTRATION} element={<Registration/>}/>*/}
@@ -52,7 +53,7 @@ export const AppRoutes = () => {
                 {/*<Route path={PATH.MUSIC} element={<Music/>}/>*/}
                 {/*<Route path={PATH.FRIEND} element={<Friends/>}/>*/}
                 {/*<Route path={PATH.COMMUNITIES} element={<Following/>}/>*/}
-                {/*<Route path={PATH.LOGIN} element={<Login/>}/>*/}
+
 
 
             </Routes>

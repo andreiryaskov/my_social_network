@@ -2,7 +2,8 @@ export const initialState = {
     id: null,
     email: null,
     login: null,
-    isLoader: false
+    isLoader: false,
+    isAuth: false
 }
 
 export type AuthInitialStateType = {
@@ -18,11 +19,13 @@ export const authReducer = (state: any = initialState, action: ActionsType): any
         case 'AUTH/AUTH-ME':
             return {
                 ...state,
+                isAuth: true,
                 ...action.payload
             }
         case "AUTH/AUTH-LOGIN":
             return {
                 ...state,
+                isAuth: false,
                 state: {}
             }
 
