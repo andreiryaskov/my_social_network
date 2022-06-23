@@ -12,6 +12,7 @@ const UsersContainer = () => {
     const currentPage = useSelector<AppRootStateType, number>(state => state.usersPage.currentPage)
     const pageSize = useSelector<AppRootStateType, number>(state => state.usersPage.pageSize)
     const pagesCount = useSelector<AppRootStateType, number>(state => state.usersPage.totalUsersCount)
+    const followingInProgress = useSelector<AppRootStateType, number[]>(state => state.usersPage.followingInProgress)
 
     const dispatch = useTypedDispatch()
 
@@ -40,7 +41,9 @@ const UsersContainer = () => {
                 pagesCount={pagesCount}
                 pageSize={pageSize}/>
             <Users changeUsersFollow={changeUsersFollow}
-                   users={users} changeUsersUnFollow={changeUsersUnFollow}
+                   users={users}
+                   changeUsersUnFollow={changeUsersUnFollow}
+                   followingInProgress={followingInProgress}
             />
         </div>
     );

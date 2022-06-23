@@ -15,12 +15,14 @@ type UsersContainerType = {
     users: UsersType[]
     // getProfileUserCallback: (id:string) => void
     changeUsersUnFollow: (id: number) => void
+    followingInProgress: number[]
 }
 
 const Users = ({
                    users,
                    changeUsersFollow,
-                   changeUsersUnFollow
+                   changeUsersUnFollow,
+                   followingInProgress
                    // getUsersCallback
                }: UsersContainerType) => {
 
@@ -61,8 +63,10 @@ const Users = ({
                                         </div>
                                         {/*<Button onClick={() => changeUsersFollow(u.id)}>*/}
                                             {u.followed
-                                                ? <Button onClick={() => changeUsersUnFollowCallback(u.id)}>Unfollow</Button>
-                                                : <Button onClick={() => changeUsersFollowCallback(u.id)}>Follow</Button>
+                                                ? <Button disabled={followingInProgress.some(id => id===u.id)}
+                                                          onClick={() => changeUsersUnFollowCallback(u.id)}>Unfollow</Button>
+                                                : <Button disabled={followingInProgress.some(id => id===u.id)}
+                                                          onClick={() => changeUsersFollowCallback(u.id)}>Follow</Button>
                                                     }
                                         {/*</Button>*/}
                                     </Grid>

@@ -4,6 +4,7 @@ export const initialState = {
     totalUsersCount: 0,
     currentPage: 1,
     isLoader: false,
+    followingInProgress: [],
     profileUser: {
         userId: 0,
         lookingForAJob: false,
@@ -30,6 +31,7 @@ export type UsersInitialStateType = {
     currentPage: number
     isLoader: boolean
     profileUser: ProfileUserType
+    followingInProgress: number[]
 
 }
 
@@ -77,17 +79,15 @@ export const usersReducer = (state: UsersInitialStateType = initialState, action
                 })
             }
         }
-        // case "USERS/UN-FOLLOW-USERS": {
-        //     return {
-        //         ...state,
-        //         users: state.users.map(u => {
-        //             if (u.id === action.payload.userId) {
-        //                 return {...u, followed: false}
-        //             }
-        //             return u
-        //         })
-        //     }
-        // }
+
+        case "USERS/FOLLOWING-PROGRESS": {
+            return {
+                ...state,
+                followingInProgress: action.payload.followed
+                    ? [...state.followingInProgress, action.payload.userId]
+                    : state.followingInProgress.filter(id => id!== action.payload.userId)
+            }
+        }
 
         case "USERS/SET-USERS": {
             return {
@@ -127,14 +127,15 @@ export const followUsersAC = (userId: number) => {
     } as const
 }
 
-// export const unFollowUserAC = (userId: number) => {
-//     return {
-//         type: 'USERS/UN-FOLLOW-USERS',
-//         payload: {
-//             userId
-//         }
-//     } as const
-// }
+export const followingProgressAC = (userId: number, followed: boolean) => {
+    return {
+        type: 'USERS/FOLLOWING-PROGRESS',
+        payload: {
+            userId,
+            followed
+        }
+    } as const
+}
 
 export const setUsersAC = (users: UsersType[], totalUsersCount: number) => {
     return {
@@ -177,7 +178,7 @@ export const getProfileUserAC = (profileUser: ProfileUserType) => {
 
 
 export type FollowUsersActionType = ReturnType<typeof followUsersAC>
-// export type UnFollowUsersActionType = ReturnType<typeof unFollowUserAC>
+export type FollowingProgressActionType = ReturnType<typeof followingProgressAC>
 export type SetUsersActionType = ReturnType<typeof setUsersAC>
 export type CurrentPageActionType = ReturnType<typeof currentPageAC>
 export type LoaderActionType = ReturnType<typeof loaderAC>
@@ -189,4 +190,4 @@ export type UsersActionType = FollowUsersActionType
     | CurrentPageActionType
     | LoaderActionType
     | GetProfileUserType
-    // | UnFollowUsersActionType
+    | FollowingProgressActionType
