@@ -14,6 +14,7 @@ const ProfileContainer = () => {
     const profileUser = useSelector<AppRootStateType, ProfileUserType>(state => state.usersPage.profileUser)
     const newPost = useSelector<AppRootStateType, PostsType[]>(state => state.addPosts.messages)
 
+
     const params = useParams<'*'>()
     const userIdFromParams = Number(params['*'])
 

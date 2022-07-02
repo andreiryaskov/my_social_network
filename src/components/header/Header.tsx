@@ -12,7 +12,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import {useSelector} from "react-redux";
-import avatar from '../../assets/image/users.png';
+import me from '../../assets/image/me.jpg';
 import {NavLink} from "react-router-dom";
 
 // const pages = ['Products', 'Pricing', 'Blog'];
@@ -151,7 +151,7 @@ const ResponsiveAppBar = ({changeLogin, deleteSetUserData}: PropsType) => {
                             <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
                                 <Avatar alt="Remy Sharp" src={
                                     auth.isAuth
-                                        ? avatar
+                                        ? me
                                         : "/static/images/avatar/2.jpg"
                                 }/>
                             </IconButton>
@@ -188,8 +188,7 @@ const ResponsiveAppBar = ({changeLogin, deleteSetUserData}: PropsType) => {
                                 <Typography textAlign="center">
                                     {
                                         auth.isAuth
-                                            ?
-                                            <NavLink to={'/login'} onClick={deleteSetUserDataCallback}>Logout</NavLink>
+                                            ? <NavLink to={'/login'} onClick={deleteSetUserDataCallback}>Logout</NavLink>
                                             : <NavLink to={'/profile'} onClick={changeLoginCallback}>Login</NavLink>
                                     }
                                 </Typography>

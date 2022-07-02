@@ -20,7 +20,7 @@ export const PATH = {
     PROFILE: '/profile/',
     USERS: '/users',
     ERROR404: '/404',
-    LOGIN: '/login',
+    LOGIN: '/',
     // NEWS: '/news',
     // REGISTRATION: '/registration',
     // PASSWORD_RECOVERY: '/password-recovery',
