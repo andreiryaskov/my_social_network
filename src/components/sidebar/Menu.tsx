@@ -8,8 +8,13 @@ import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Stack from '@mui/material/Stack';
 import {NavLink} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {AppRootStateType} from "../../redux/store";
+import {AuthInitialStateType} from "../../redux/reducers/auth-reducer";
 
 export default function Menu() {
+
+    const authMeLogin = useSelector<AppRootStateType, any>(state => state.auth.isAuth)
     // const [open, setOpen] = React.useState(false);
     // const anchorRef = React.useRef<HTMLButtonElement>(null);
     //
@@ -47,18 +52,20 @@ export default function Menu() {
     //     prevOpen.current = open;
     // }, [open]);
 
+    const redirectToProfile = authMeLogin ? '/profile' : '/'
+
     return (
         <Stack direction="row" spacing={2}>
             <Paper elevation={5}>
                 <MenuList>
-                    <MenuItem><NavLink to='/profile'>My Profile</NavLink></MenuItem>
-                    <MenuItem> <NavLink to='/news'>News</NavLink></MenuItem>
-                    <MenuItem><NavLink to='/messeger'>Messeger</NavLink></MenuItem>
-                    <MenuItem> <NavLink to='/friend'>Friends</NavLink></MenuItem>
+                    <MenuItem><NavLink to={redirectToProfile}>My Profile</NavLink></MenuItem>
+                    {/*<MenuItem> <NavLink to='/news'>News</NavLink></MenuItem>*/}
+                    {/*<MenuItem><NavLink to='/messeger'>Messeger</NavLink></MenuItem>*/}
+                    {/*<MenuItem> <NavLink to='/friend'>Friends</NavLink></MenuItem>*/}
                     <MenuItem> <NavLink to='/users'>Users</NavLink></MenuItem>
-                    <MenuItem> <NavLink to='/communities'>Communities</NavLink></MenuItem>
-                    <MenuItem> <NavLink to='/photos'>Photos</NavLink></MenuItem><MenuItem> <NavLink
-                    to='/music'>Music</NavLink></MenuItem>
+                    {/*<MenuItem> <NavLink to='/communities'>Communities</NavLink></MenuItem>*/}
+                    <MenuItem> <NavLink to='/photos'>Photos</NavLink></MenuItem>
+                    {/*<MenuItem><NavLink to='/music'>Music</NavLink></MenuItem>*/}
                     <MenuItem><NavLink to='/logout'>Logout</NavLink></MenuItem>
 
                 </MenuList>
