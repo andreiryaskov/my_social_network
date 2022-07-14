@@ -188,7 +188,7 @@ const ResponsiveAppBar = ({changeLogin, deleteSetUserData}: PropsType) => {
                                 <Typography textAlign="center">
                                     {
                                         auth.isAuth
-                                            ? <NavLink to={'/login'} onClick={deleteSetUserDataCallback}>Logout</NavLink>
+                                            ? <NavLink to={'/'} onClick={deleteSetUserDataCallback}>Logout</NavLink>
                                             : <NavLink to={'/profile'} onClick={changeLoginCallback}>Login</NavLink>
                                     }
                                 </Typography>

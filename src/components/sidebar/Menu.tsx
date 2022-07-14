@@ -14,7 +14,7 @@ import {AuthInitialStateType} from "../../redux/reducers/auth-reducer";
 
 export default function Menu() {
 
-    const authMeLogin = useSelector<AppRootStateType, any>(state => state.auth.isAuth)
+    const authMeLogin = useSelector<AppRootStateType, boolean>(state => state.auth.isAuth)
     // const [open, setOpen] = React.useState(false);
     // const anchorRef = React.useRef<HTMLButtonElement>(null);
     //
