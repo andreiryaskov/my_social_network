@@ -52,7 +52,7 @@ export default function Menu() {
     //     prevOpen.current = open;
     // }, [open]);
 
-    const redirectToProfile = authMeLogin ? '/profile' : '/'
+    const redirectToProfile = authMeLogin ? '/profile/me' : '/'
 
     return (
         <Stack direction="row" spacing={2}>

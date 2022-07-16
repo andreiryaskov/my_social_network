@@ -15,12 +15,14 @@ import {useSelector} from "react-redux";
 import {AppRootStateType} from "./redux/store";
 import {AuthInitialStateType} from "./redux/reducers/auth-reducer";
 import Login from "./components/Login";
+import LoginContainer from "./Containers/LoginContainer";
 
 export const PATH = {
     PROFILE: '/profile/',
     USERS: '/users',
     ERROR404: '/404',
     LOGIN: '/',
+    PROFILE_ME: '/profile/me'
     // NEWS: '/news',
     // REGISTRATION: '/registration',
     // PASSWORD_RECOVERY: '/password-recovery',
@@ -44,8 +46,8 @@ export const AppRoutes = () => {
             <Route path={'*'} element={<Navigate to={PATH.ERROR404}/>}/>
             <Route path={PATH.USERS} element={<UsersContainer/>}/>
             <Route path={`${PATH.PROFILE}*`} element={<ProfileContainer/>}/>
-            <Route path={PATH.PROFILE} element={<Me/>}/>
-            <Route path={PATH.LOGIN} element={<Login/>}/>
+            <Route path={PATH.PROFILE_ME} element={<Me/>}/>
+            <Route path={PATH.LOGIN} element={<LoginContainer/>}/>
 
             {/*<Route path={PATH.NEWS} element={<News/>}/>*/}
             {/*<Route path={PATH.REGISTRATION} element={<Registration/>}/>*/}
