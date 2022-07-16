@@ -25,6 +25,11 @@ export const authReducer = (state: AuthInitialStateType = initialState, action: 
                 ...state,
                 isAuth: false
             }
+        // case "AUTH/AUTH-LOGIN":
+        //     return {
+        //     ...state,
+        //     isAuth: true
+        // }
 
         default: {
             return state
@@ -50,8 +55,16 @@ export const authLogoutAC = () => {
     } as const
 }
 
+// export const authLoginAC = () => {
+//     return {
+//         type: 'AUTH/AUTH-LOGIN'
+//     } as const
+// }
+
 export type AuthMeActionType = ReturnType<typeof authMeAC>
 export type AuthLogoutActionType = ReturnType<typeof authLogoutAC>
+// export type AuthLoginActionType = ReturnType<typeof authLoginAC>
 
 export type ActionsType = AuthMeActionType
     | AuthLogoutActionType
+    // | AuthLoginActionType

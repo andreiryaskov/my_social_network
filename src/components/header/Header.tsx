@@ -19,11 +19,10 @@ import {NavLink} from "react-router-dom";
 // const settings = ['Profile', 'Logout'];
 
 type PropsType = {
-    changeLogin: () => void
     deleteSetUserData: () => void
 }
 
-const ResponsiveAppBar = ({changeLogin, deleteSetUserData}: PropsType) => {
+const ResponsiveAppBar = ({deleteSetUserData}: PropsType) => {
     let auth = useSelector<any, any>(state => state.auth)
 
     // const changeLoginCallback = () => {

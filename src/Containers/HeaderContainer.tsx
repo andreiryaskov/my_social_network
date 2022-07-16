@@ -1,15 +1,15 @@
 import React from 'react';
 import ResponsiveAppBar from "../components/header/Header";
-import {authLoginTC, authLogoutTC, authMeTC} from "../redux/thunk/auth-thunk";
+import {authLogoutTC} from "../redux/thunk/auth-thunk";
 import {useTypedDispatch} from "../redux/store";
 
 const HeaderContainer = () => {
 
     const dispatch = useTypedDispatch()
 
-    const changeLogin = () => {
-        dispatch(authMeTC())
-    }
+    // const changeLogin = () => {
+    //     dispatch(authMeTC())
+    // }
 
     const deleteSetUserData = () => {
         dispatch(authLogoutTC())
@@ -19,8 +19,7 @@ const HeaderContainer = () => {
 
     return (
         <div>
-            <ResponsiveAppBar changeLogin={changeLogin}
-                              deleteSetUserData={deleteSetUserData}/>
+            <ResponsiveAppBar deleteSetUserData={deleteSetUserData}/>
         </div>
     );
 };

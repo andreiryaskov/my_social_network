@@ -31,6 +31,8 @@ export const authLoginTC = (values: any) => (dispatch: Dispatch) => {
     usersAPI.authLogin(values)
         .then(res => {
             if (res.resultCode === 0) {
+                // @ts-ignore
+                dispatch(authMeTC())
                 dispatch(loaderAC(false))
             }
         })

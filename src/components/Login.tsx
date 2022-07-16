@@ -3,8 +3,9 @@ import {useFormik} from 'formik';
 import * as yup from 'yup';
 import {TextField} from "@mui/material";
 import Button from "@mui/material/Button";
-import {authLoginTC} from "../redux/thunk/auth-thunk";
+import {authLoginTC, authMeTC} from "../redux/thunk/auth-thunk";
 import {useTypedDispatch} from "../redux/store";
+import {useSelector} from "react-redux";
 
 const validationSchema = yup.object({
     email: yup
@@ -18,7 +19,6 @@ const validationSchema = yup.object({
 });
 
 const Login = () => {
-
     const dispatch = useTypedDispatch()
 
     const formik = useFormik({
@@ -28,8 +28,6 @@ const Login = () => {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            console.log(values)
-            // alert(JSON.stringify(values, null, 2));
             dispatch(authLoginTC(values))
         },
     });
