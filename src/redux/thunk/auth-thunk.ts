@@ -34,6 +34,8 @@ export const authLoginTC = (values: any) => (dispatch: Dispatch) => {
                 // @ts-ignore
                 dispatch(authMeTC())
                 dispatch(loaderAC(false))
+            } else {
+                alert('Не правильный логин или пароль')
             }
         })
 }

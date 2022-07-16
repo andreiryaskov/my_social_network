@@ -22,7 +22,8 @@ export const PATH = {
     USERS: '/users',
     ERROR404: '/404',
     LOGIN: '/',
-    PROFILE_ME: '/profile/me'
+    PROFILE_ME: '/profile/me',
+    FRIENDS: '/friends'
     // NEWS: '/news',
     // REGISTRATION: '/registration',
     // PASSWORD_RECOVERY: '/password-recovery',
@@ -48,13 +49,14 @@ export const AppRoutes = () => {
             <Route path={`${PATH.PROFILE}*`} element={<ProfileContainer/>}/>
             <Route path={PATH.PROFILE_ME} element={<Me/>}/>
             <Route path={PATH.LOGIN} element={<LoginContainer/>}/>
+            <Route path={PATH.FRIENDS} element={<Friends/>}/>
 
             {/*<Route path={PATH.NEWS} element={<News/>}/>*/}
             {/*<Route path={PATH.REGISTRATION} element={<Registration/>}/>*/}
             {/*<Route path={PATH.PASSWORD_RECOVERY} element={<RecoveryPassword/>}/>*/}
             {/*<Route path={PATH.NEW_PASSWORD} element={<NewPassword/>}/>*/}
             {/*<Route path={PATH.MESSENGER} element={<Messenger/>}/>*/}
-            {/*<Route path={PATH.PHOTOS} element={<MyPhotos/>}/>*/}
+
             {/*<Route path={PATH.MUSIC} element={<Music/>}/>*/}
             {/*<Route path={PATH.FRIEND} element={<Friends/>}/>*/}
             {/*<Route path={PATH.COMMUNITIES} element={<Following/>}/>*/}

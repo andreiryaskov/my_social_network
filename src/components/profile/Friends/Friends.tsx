@@ -4,9 +4,9 @@ import s from './Friend.module.scss';
 
 const Friends = () => {
     return (
-        <Paper elevation={5} className={s.friends}>
+        <div>
             Friends
-        </Paper>
+        </div>
     );
 };
 

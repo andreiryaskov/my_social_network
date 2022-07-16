@@ -64,9 +64,9 @@ export default function Menu() {
                     {/*<MenuItem> <NavLink to='/friend'>Friends</NavLink></MenuItem>*/}
                     <MenuItem> <NavLink to='/users'>Users</NavLink></MenuItem>
                     {/*<MenuItem> <NavLink to='/communities'>Communities</NavLink></MenuItem>*/}
-                    <MenuItem> <NavLink to='/photos'>Photos</NavLink></MenuItem>
+                    <MenuItem> <NavLink to='/friends'>Friends</NavLink></MenuItem>
                     {/*<MenuItem><NavLink to='/music'>Music</NavLink></MenuItem>*/}
-                    <MenuItem><NavLink to='/logout'>Logout</NavLink></MenuItem>
+                    {/*<MenuItem><NavLink to='/logout'>Logout</NavLink></MenuItem>*/}
 
                 </MenuList>
             </Paper>
