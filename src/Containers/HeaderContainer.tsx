@@ -1,6 +1,6 @@
 import React from 'react';
 import ResponsiveAppBar from "../components/header/Header";
-import {authLoginTC, authMeTC} from "../redux/thunk/auth-thunk";
+import {authLoginTC, authLogoutTC, authMeTC} from "../redux/thunk/auth-thunk";
 import {useTypedDispatch} from "../redux/store";
 
 const HeaderContainer = () => {
@@ -12,8 +12,10 @@ const HeaderContainer = () => {
     }
 
     const deleteSetUserData = () => {
-        dispatch(authLoginTC())
+        dispatch(authLogoutTC())
     }
+
+
 
     return (
         <div>

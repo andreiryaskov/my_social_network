@@ -29,7 +29,13 @@ export const usersAPI = {
                 return res.data
             })
     },
-    authLogin() {
+    authLogin(values: any) {
+        return instance.post(`/auth/login`, values)
+            .then(res => {
+                return res.data
+            })
+    },
+    authLogout() {
         return instance.delete(`/auth/login`)
         .then(res => {
             return res.data

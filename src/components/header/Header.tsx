@@ -26,9 +26,9 @@ type PropsType = {
 const ResponsiveAppBar = ({changeLogin, deleteSetUserData}: PropsType) => {
     let auth = useSelector<any, any>(state => state.auth)
 
-    const changeLoginCallback = () => {
-        changeLogin()
-    }
+    // const changeLoginCallback = () => {
+    //     changeLogin()
+    // }
 
     const deleteSetUserDataCallback = () => {
         deleteSetUserData()
@@ -187,9 +187,12 @@ const ResponsiveAppBar = ({changeLogin, deleteSetUserData}: PropsType) => {
                             <MenuItem onClick={handleCloseUserMenu}>
                                 <Typography textAlign="center">
                                     {
+                                        // auth.isAuth
+                                        //     ? <NavLink to={'/'} onClick={deleteSetUserDataCallback}>Logout</NavLink>
+                                        //     : <NavLink to={'/profile'} onClick={changeLoginCallback}>Login</NavLink>
                                         auth.isAuth
                                             ? <NavLink to={'/'} onClick={deleteSetUserDataCallback}>Logout</NavLink>
-                                            : <NavLink to={'/profile'} onClick={changeLoginCallback}>Login</NavLink>
+                                            : <NavLink to={'/'}>Login</NavLink>
                                     }
                                 </Typography>
                             </MenuItem>

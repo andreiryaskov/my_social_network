@@ -1,6 +1,6 @@
 import {Dispatch} from "redux";
 import {usersAPI} from "../../api/social-api";
-import {authLoginAC, authMeAC} from "../reducers/auth-reducer";
+import {authLogoutAC, authMeAC} from "../reducers/auth-reducer";
 import {loaderAC} from "../reducers/users-reducer";
 
 export const authMeTC = () => (dispatch: Dispatch) => {
@@ -15,12 +15,22 @@ export const authMeTC = () => (dispatch: Dispatch) => {
         })
 }
 
-export const authLoginTC = () => (dispatch: Dispatch) => {
+export const authLogoutTC = () => (dispatch: Dispatch) => {
     dispatch(loaderAC(true))
-    usersAPI.authLogin()
+    usersAPI.authLogout()
         .then(res => {
             if (res.resultCode === 0) {
-                dispatch(authLoginAC())
+                dispatch(authLogoutAC())
+                dispatch(loaderAC(false))
+            }
+        })
+}
+
+export const authLoginTC = (values: any) => (dispatch: Dispatch) => {
+    dispatch(loaderAC(true))
+    usersAPI.authLogin(values)
+        .then(res => {
+            if (res.resultCode === 0) {
                 dispatch(loaderAC(false))
             }
         })

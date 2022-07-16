@@ -20,7 +20,7 @@ export const authReducer = (state: AuthInitialStateType = initialState, action: 
                 isAuth: true,
                 ...action.payload
             }
-        case "AUTH/AUTH-LOGIN":
+        case "AUTH/AUTH-LOGOUT":
             return {
                 ...state,
                 isAuth: false
@@ -44,14 +44,14 @@ export const authMeAC = (id: number, email: string, login: string) => {
     } as const
 }
 
-export const authLoginAC = () => {
+export const authLogoutAC = () => {
     return {
-        type: 'AUTH/AUTH-LOGIN'
+        type: 'AUTH/AUTH-LOGOUT'
     } as const
 }
 
 export type AuthMeActionType = ReturnType<typeof authMeAC>
-export type AuthLoginActionType = ReturnType<typeof authLoginAC>
+export type AuthLogoutActionType = ReturnType<typeof authLogoutAC>
 
 export type ActionsType = AuthMeActionType
-    | AuthLoginActionType
+    | AuthLogoutActionType
